@@ -10,6 +10,7 @@ import { AddScreeningPageComponent } from './add-screening-page/add-screening-pa
 import { EditScreeningPageComponent } from './edit-screening-page/edit-screening-page.component';
 import { EditFilmPageComponent } from './edit-film-page/edit-film-page.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

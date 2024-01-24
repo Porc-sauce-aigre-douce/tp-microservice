@@ -6,7 +6,7 @@ import { Film } from '../interfaces/film';
   providedIn: 'root'
 })
 export class FilmService {
-  private apiUrl = 'https://localhost:8080/film'; // Replace with your API URL
+  private apiUrl = 'localhost:8080/film'; // Replace with your API URL
 
   constructor(private http: HttpClient) { }
 

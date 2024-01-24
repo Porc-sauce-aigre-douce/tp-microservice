@@ -1,9 +1,8 @@
 cd microserviceFilm 
 START mvn spring-boot:run
 cd ../microserviceScreening
-pnpm install
-START node index.js
+START cmd.exe /k "pnpm install && node index.js"
 cd ../microserviceUsers
-pnpm install
-START node index.js
-cd ../front && ng serve
+START cmd.exe /k "pnpm install && node index.js"
+cd ../front
+npm i && ng serve

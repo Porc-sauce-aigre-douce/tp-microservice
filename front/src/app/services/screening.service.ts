@@ -7,12 +7,13 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ScreeningService {
-  private apiUrl = 'localhost:3000/seance'; // Replace with your API URL
+
+  private apiUrl = 'http://localhost:3000/seance'; // Replace with your API URL
 
   constructor(private http: HttpClient) { }
 
   getAllScreenings(): Observable<Screening[]> {
-    return this.http.get<Screening[]>(this.apiUrl);
+    return this.http.get<Screening[]>(this.apiUrl, { withCredentials: true });
   }
 
   getScreeningById(id: number): Observable<Screening> {

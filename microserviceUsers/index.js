@@ -38,6 +38,7 @@ run().catch(console.dir);
 
 // Get a single post
 router.get("/user/:id", async (req, res) => {
+  res.header("Access-Control-Allow-Origin", "http://localhost:4200");
   let collection = await db.collection("users");
   let query = { _id: new ObjectId(req.params.id) };
   let result = await collection.findOne(query);
@@ -47,6 +48,7 @@ router.get("/user/:id", async (req, res) => {
 
 // Add a new document to the collection
 router.post("/user/", async (req, res) => {
+  res.header("Access-Control-Allow-Origin", "http://localhost:4200");
   let collection = await db.collection("users");
   let newDocument = {
     ...req.body,

@@ -1,7 +1,7 @@
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const express = require('express');
-const router = express()
-router.use(express.json());
+const app = express()
+app.use(express.json());
 const port = 3000;
 let conn;
 let db;
@@ -35,9 +35,9 @@ async function run() {
 }
 run().catch(console.dir);
 
-
 // Get a list of 50 screening
-router.get("/seance/", async (req, res) => {
+app.get("/seance/", async (req, res) => {
+  res.header("Access-Control-Allow-Origin", "http://localhost:4200");
   let collection = await db.collection("screening");
   let results = await collection.find({})
     .limit(50)
@@ -46,7 +46,8 @@ router.get("/seance/", async (req, res) => {
 });
 
 // Get a single post
-router.get("/seance/:id", async (req, res) => {
+app.get("/seance/:id", async (req, res) => {
+  res.header("Access-Control-Allow-Origin", "http://localhost:4200");
   let collection = await db.collection("screening");
   let query = { _id: new ObjectId(req.params.id) };
   let result = await collection.findOne(query);
@@ -55,7 +56,8 @@ router.get("/seance/:id", async (req, res) => {
 });
 
 // Add a new document to the collection
-router.post("/seance/", async (req, res) => {
+app.post("/seance/", async (req, res) => {
+  res.header("Access-Control-Allow-Origin", "http://localhost:4200");
   let collection = await db.collection("screening");
   let newDocument = {
     ...req.body,
@@ -68,7 +70,8 @@ router.post("/seance/", async (req, res) => {
 });
 
 // Update the screening
-router.put("/seance/:id", async (req, res) => {
+app.put("/seance/:id", async (req, res) => {
+  res.header("Access-Control-Allow-Origin", "http://localhost:4200");
   const query = { _id: new ObjectId(req.params.id) };
   const updates = {
     $set: { movieId: req.body.movieId,
@@ -81,7 +84,8 @@ router.put("/seance/:id", async (req, res) => {
 });
 
 // Add a user to the screening
-router.put("/seance/book/:id", async (req, res) => {
+app.put("/seance/book/:id", async (req, res) => {
+  res.header("Access-Control-Allow-Origin", "http://localhost:4200");
   const query = { _id: new ObjectId(req.params.id) };
   const updates = {
     $push: { users: req.body }
@@ -92,13 +96,14 @@ router.put("/seance/book/:id", async (req, res) => {
 });
 
 // Delete an entry
-router.delete("/seance/:id", async (req, res) => {
+app.delete("/seance/:id", async (req, res) => {
+  res.header("Access-Control-Allow-Origin", "http://localhost:4200");
   const query = { _id: new ObjectId(req.params.id) };
   const collection = db.collection("screening");
   let result = await collection.deleteOne(query);
   res.send(result).status(200);
 });
 
-router.listen(port, () => {
+app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })

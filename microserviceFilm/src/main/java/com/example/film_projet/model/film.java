@@ -21,6 +21,10 @@ public class film {
         // Aucun argument n'est nécessaire pour le constructeur par défaut
     }
 
+    public void setID(String id) {
+        this.id = id;
+    }
+
     public String getId() {
         return this.id;
     }

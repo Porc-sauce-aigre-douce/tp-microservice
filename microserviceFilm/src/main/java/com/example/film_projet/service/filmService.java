@@ -3,6 +3,7 @@ package com.example.film_projet.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.aggregation.ConvertOperators.ToInt;
 import org.springframework.stereotype.Service;
 
 import com.example.film_projet.exception.FilmNotFoundException;
@@ -24,6 +25,9 @@ public class filmService {
     }
 
     public film createFilm(film film) {
+        if(film.getId() == "") {
+            film.setID(null);
+        }
         return filmRepository.save(film);
     }
 
@@ -38,13 +42,33 @@ public class filmService {
         }
 
         // Mettez à jour les champs du film existant avec les nouvelles valeurs
-        existingFilm.setTitre(updatedFilm.getTitre());
-        existingFilm.setDescription(updatedFilm.getDescription());
-        existingFilm.setGenre(updatedFilm.getGenre());
-        existingFilm.setDuree(updatedFilm.getDuree());
-        existingFilm.setAnneeSortie(updatedFilm.getAnneeSortie());
-        existingFilm.setRealisateur(updatedFilm.getRealisateur());
-        existingFilm.setImage(updatedFilm.getImage());
+        if (updatedFilm.getTitre() != null) {
+            existingFilm.setTitre(updatedFilm.getTitre());
+        }
+
+        if (updatedFilm.getDescription() != null) {
+            existingFilm.setDescription(updatedFilm.getDescription());
+        }
+
+        if (updatedFilm.getGenre() != null) {
+            existingFilm.setGenre(updatedFilm.getGenre());
+        }
+
+        if (updatedFilm.getDuree() != null) {
+            existingFilm.setDuree(updatedFilm.getDuree());
+        }
+
+        if (updatedFilm.getAnneeSortie() != 0) {
+            existingFilm.setAnneeSortie(updatedFilm.getAnneeSortie());
+        }
+
+        if (updatedFilm.getRealisateur() != null) {
+            existingFilm.setRealisateur(updatedFilm.getRealisateur());
+        }
+
+        if (updatedFilm.getImage() != null) {
+            existingFilm.setImage(updatedFilm.getImage());
+        }
 
         // Enregistrez le film mis à jour dans la base de données
         return filmRepository.save(existingFilm);

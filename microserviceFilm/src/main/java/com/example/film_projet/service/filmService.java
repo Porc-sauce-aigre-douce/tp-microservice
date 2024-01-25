@@ -44,6 +44,7 @@ public class filmService {
         existingFilm.setDuree(updatedFilm.getDuree());
         existingFilm.setAnneeSortie(updatedFilm.getAnneeSortie());
         existingFilm.setRealisateur(updatedFilm.getRealisateur());
+        existingFilm.setImage(updatedFilm.getImage());
 
         // Enregistrez le film mis à jour dans la base de données
         return filmRepository.save(existingFilm);

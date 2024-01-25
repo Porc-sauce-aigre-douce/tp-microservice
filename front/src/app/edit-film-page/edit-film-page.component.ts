@@ -33,5 +33,4 @@ export class EditFilmPageComponent {
   updateFilm(): void {
     this.filmService.updateFilm(this.id, <Film>this.editFilmForm.value);
   }
-
 }

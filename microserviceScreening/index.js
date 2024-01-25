@@ -35,6 +35,13 @@ async function run() {
 }
 run().catch(console.dir);
 
+app.all("*", function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "http://localhost:4200");
+  res.header("Access-Control-Allow-Methods", "*");
+  res.header("Access-Control-Allow-Headers", "*");
+  next();
+});
+
 // Get a list of 50 screening
 app.get("/seance/", async (req, res) => {
   res.header("Access-Control-Allow-Origin", "http://localhost:4200");
@@ -56,7 +63,7 @@ app.get("/seance/:id", async (req, res) => {
 });
 
 // Add a new document to the collection
-app.post("/seance/", async (req, res) => {
+app.post("/seance", async (req, res) => {
   res.header("Access-Control-Allow-Origin", "http://localhost:4200");
   let collection = await db.collection("screening");
   let newDocument = {
@@ -71,7 +78,7 @@ app.post("/seance/", async (req, res) => {
 
 // Update the screening
 app.put("/seance/:id", async (req, res) => {
-  res.header("Access-Control-Allow-Origin", "http://localhost:4200");
+  res.header("Access-Control-Allow-Origin", "http://localhost:4200"); 
   const query = { _id: new ObjectId(req.params.id) };
   const updates = {
     $set: { movieId: req.body.movieId,

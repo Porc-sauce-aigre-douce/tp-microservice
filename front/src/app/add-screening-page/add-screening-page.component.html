@@ -1,1 +1,35 @@
-<p>add-screening-page works!</p>
+<div class="main-content">
+  <section id="Film1">
+    <div class="login-box">
+      <br>
+      <form [formGroup]="createScreeningForm" (ngSubmit)="createScreening()">
+        <div class="user-box">
+          <input type="text" formControlName="date">
+          <label>Date</label>
+        </div>
+        <div class="user-box">
+          <input type="text" formControlName="hour">
+          <label>Heure</label>
+        </div>
+        <div class="user-box">
+          <select formControlName="filmId">
+            <ng-container *ngFor="let film of films">
+              <option [value]="film.id">{{ film.title }}</option>
+            </ng-container>
+          </select>
+          <label>Film</label>
+        </div>
+        <div class="user-box">
+          <input type="text" formControlName="room">
+          <label>Salle</label>
+        </div>
+        <button type="submit">
+          Ajouter
+        </button>
+        <a [routerLink]="'/admin'">
+          Annuler
+        </a>
+      </form>
+    </div>
+  </section>
+</div>

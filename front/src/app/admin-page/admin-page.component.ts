@@ -3,6 +3,7 @@ import { Film } from '../interfaces/film';
 import { Screening } from '../interfaces/screening';
 import { FilmService } from '../services/film.service';
 import { ScreeningService } from '../services/screening.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-page',
@@ -13,7 +14,7 @@ export class AdminPageComponent {
   films: Film[] = [];
   screenings: Screening[] = [];
 
-  constructor(private filmService: FilmService, private screeningService: ScreeningService) { }
+  constructor(private filmService: FilmService, private screeningService: ScreeningService, private router: Router) { }
 
   ngOnInit(): void {
     this.filmService.getAllFilms().subscribe((films: Film[]) => {
@@ -30,5 +31,12 @@ export class AdminPageComponent {
 
   deleteFilm(id: string): void {
     this.filmService.deleteFilm(id)
+    this.router.navigate(['/admin/']);
+    
+  }
+
+  deleteScreening(id: string): void {
+    this.screeningService.deleteScreening(id)
+    this.router.navigate(['/admin/']);
   }
 }

@@ -69,10 +69,9 @@
           <ng-container *ngFor="let screening of screenings">
             <tr>
               <td>{{screening.hour}}</td>
-              <!-- <td colspan="2" class="big">TITRE</td> -->
-              <td>{{getFilm(screening.id)?.duration}}</td>
+              <td>{{getFilm(screening.filmId)?.duration}}</td>
               <!-- <td>224pl</td> -->
-              <td>{{getFilm(screening.id)?.title}}</td>
+              <td>{{getFilm(screening.filmId)?.title}}</td>
               <td>{{screening.date}}</td>
             </tr>
           </ng-container>

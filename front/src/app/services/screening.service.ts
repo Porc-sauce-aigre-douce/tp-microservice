@@ -16,23 +16,23 @@ export class ScreeningService {
     return this.http.get<Screening[]>(this.apiUrl);
   }
 
-  getScreeningById(id: number): Observable<Screening> {
+  getScreeningById(id: string): Observable<Screening> {
     return this.http.get<Screening>(`${this.apiUrl}/${id}`);
   }
 
-  bookScreening(id: number, screening: Screening) {
-    this.http.put(`${this.apiUrl}/book/${id}`, screening);
+  bookScreening(id: string, screening: Screening) {
+    this.http.put(`${this.apiUrl}/book/${id}`, screening).subscribe();
   }
 
   createScreening(screening: Screening) {
-    this.http.post(this.apiUrl, screening);
+    this.http.post(this.apiUrl, screening).subscribe();
   }
 
-  updateScreening(id: number, screening: Screening) {
-    this.http.put(`${this.apiUrl}/${id}`, screening);
+  updateScreening(id: string, screening: Screening) {
+    this.http.put(`${this.apiUrl}/${id}`, screening).subscribe();
   }
 
-  deleteScreening(id: number) {
-    this.http.delete(`${this.apiUrl}/${id}`);
+  deleteScreening(id: string) {
+    this.http.delete(`${this.apiUrl}/${id}`).subscribe();
   }  
 }

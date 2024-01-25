@@ -1,5 +1,5 @@
 export interface Screening {
-  id: string;
+  _id: string;
   date: string;
   hour: string;
   filmId: string;

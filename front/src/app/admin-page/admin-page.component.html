@@ -17,6 +17,7 @@
   <div id="wrap-article3">
     <div id="box-title">
       <h2>Progra<i class="fas fa-plus"></i></h2>
+      <button [routerLink]="'/addScreening'">Ajouter</button>
     </div>
     <div id="container-table">
       <table>
@@ -28,6 +29,8 @@
             <!-- <th><span>Place</span></th> -->
             <th><span>Film</span></th>
             <th><span>Séance</span></th>
+            <th><span>Modifier</span></th>
+            <th><span>Supprimer</span></th>
           </tr>
         </thead>
 
@@ -36,10 +39,12 @@
             <tr>
               <td>{{screening.hour}}</td>
               <!-- <td colspan="2" class="big">TITRE</td> -->
-              <td>{{getFilm(screening.id)?.duration}}</td>
+              <td>{{getFilm(screening.filmId)?.duration}}</td>
               <!-- <td>224pl</td> -->
-              <td>{{getFilm(screening.id)?.title}}</td>
+              <td>{{getFilm(screening.filmId)?.title}}</td>
               <td>{{screening.date}}</td>
+              <td><a [routerLink]="['/editScreening', screening._id]">Modifier</a></td>
+              <td><button (click)="deleteScreening(screening._id)">Supprimer</button></td>
             </tr>
           </ng-container>
         </tbody>

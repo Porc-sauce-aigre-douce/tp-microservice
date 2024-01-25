@@ -12,8 +12,8 @@ const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'addFilm', component: AddFilmPageComponent },
   { path: 'addScreening', component: AddScreeningPageComponent },
-  { path: 'editScreening', component: EditScreeningPageComponent},
-  { path: 'editFilm', component: EditFilmPageComponent },
+  { path: 'editScreening/:id', component: EditScreeningPageComponent},
+  { path: 'editFilm/:id', component: EditFilmPageComponent },
   { path: 'admin', component: AdminPageComponent },
   { path: 'login', component: LoginPageComponent },
 ];

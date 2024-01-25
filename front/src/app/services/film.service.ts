@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, map, tap } from 'rxjs';
 import { Film } from '../interfaces/film';
+import { FilmServer } from '../interfaces/film-server';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,7 +12,22 @@ export class FilmService {
   constructor(private http: HttpClient) { }
 
   getAllFilms(): Observable<Film[]> {
-    return this.http.get<Film[]>(this.apiUrl);
+    return this.http.get<FilmServer[]>(this.apiUrl).pipe(
+      map((films) => {
+        return films.map((film): Film => {
+          return {
+            id: film.id,
+            title: film.titre,
+            releaseDate: film.anneeSortie,
+            director: film.realisateur,
+            genre: film.genre,
+            duration: film.duree,
+            description: film.description,
+            poster: film.image,
+          };
+        });
+      })
+    );
   }
 
   getFilmById(id: number): Observable<Film> {
@@ -19,14 +35,34 @@ export class FilmService {
   }
 
   createFilm(film: Film) {
-    this.http.post(this.apiUrl, film);
+    const filmServer: FilmServer = {
+      id: "",
+      titre: film.title,
+      anneeSortie: film.releaseDate,
+      realisateur: film.director,
+      genre: film.genre,
+      duree: film.duration,
+      description: film.description,
+      image: film.poster,
+    };
+    this.http.post(this.apiUrl, filmServer).subscribe();
   }
 
-  updateFilm(id: number, film: Film) {
-    this.http.put(`${this.apiUrl}/${id}`, film);
+  updateFilm(id: string, film: Film) {
+    const filmServer: FilmServer = {
+      id: id,
+      titre: film.title,
+      anneeSortie: film.releaseDate,
+      realisateur: film.director,
+      genre: film.genre,
+      duree: film.duration,
+      description: film.description,
+      image: film.poster,
+    };
+    this.http.put(`${this.apiUrl}/${id}`, filmServer).subscribe();
   }
 
-  deleteFilm(id: number) {
-    this.http.delete(`${this.apiUrl}/${id}`);
+  deleteFilm(id: string) {
+    this.http.delete(`${this.apiUrl}/${id}`).subscribe();
   }
 }

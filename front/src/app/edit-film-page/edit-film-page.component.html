@@ -2,54 +2,44 @@
   <section id="Film1">
         <div class="login-box">
 <br>
-          <form>
+          <form [formGroup]="editFilmForm" (ngSubmit)="updateFilm()">
             <div class="user-box">
-              <input type="text" name="" required="">
+              <input type="text" formControlName="title">
               <label>Nom film</label>
             </div>
             <div class="user-box">
-              <input type="text" name="" required="">
+              <input type="text" formControlName="duration">
               <label>Durée</label>
             </div>
             <div class="user-box">
-              <p>Image : 
-                  <input type="file" id="inputImage" style="display: none;">
-                  <button onclick="choisirImage()">Sélectionner une image</button>
-              </p>
+              <input type="text" formControlName="poster">
+              <label>Affiche</label>
             </div>
-            <div class="user-box">
-              <input type="text" name="" required="">
+            <!-- <div class="user-box">
+              <input type="text" formControlName="">
               <label>Tarif :</label>
-            </div>
+            </div> -->
             <div class="user-box">
-              <input type="text" name="" required="">
+              <input type="text" formControlName="genre">
               <label>Genre :</label>
             </div>
             <div class="user-box">
-              <input type="date" name="" required="">
+              <input type="text" formControlName="releaseDate">
               <label>Date de sortie :</label>
             </div>
             <div class="user-box">
-              <input type="text" name="" required="">
+              <input type="text" formControlName="description">
               <label>Description :</label>
             </div>
-            <div class="user-box">
+            <!-- <div class="user-box">
               <input type="text" name="" required="">
               <label>Tarif :</label>
-            </div>
-            <a href="Admin.HTML">
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
+            </div> -->
+            <button type="submit">
               Modifier
-            </a>
-            <a href="#">
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              Supprimer
+            </button>
+            <a [routerLink]="'/admin'">
+              Annuler
             </a>
           </form>
         </div>

@@ -13,7 +13,7 @@ export class ScreeningService {
   constructor(private http: HttpClient) { }
 
   getAllScreenings(): Observable<Screening[]> {
-    return this.http.get<Screening[]>(this.apiUrl, { withCredentials: true });
+    return this.http.get<Screening[]>(this.apiUrl);
   }
 
   getScreeningById(id: number): Observable<Screening> {

@@ -37,13 +37,18 @@ run().catch(console.dir);
 
 
 // Get a single post
-router.get("/user/:id", async (req, res) => {
+router.get("/user/:username", async (req, res) => {
   res.header("Access-Control-Allow-Origin", "http://localhost:4200");
   let collection = await db.collection("users");
-  let query = { _id: new ObjectId(req.params.id) };
+  let query = { username: req.params.username };
   let result = await collection.findOne(query);
-  if (!result) res.send("Not found").status(404);
-  else res.send(result).status(200);
+  if (!result) {
+    res.send("Not found").status(404);
+  }
+  else {
+    console.log(res.header);
+    res.send(result).status(200);
+  }
 });
 
 // Add a new document to the collection

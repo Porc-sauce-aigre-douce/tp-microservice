@@ -11,6 +11,7 @@ import { EditScreeningPageComponent } from './edit-screening-page/edit-screening
 import { EditFilmPageComponent } from './edit-film-page/edit-film-page.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -6,15 +6,12 @@
                   <header>
                       <h2>Identification</h2>
                   </header>
-      
-                  <form action="" method="post">
-                    
-                      <input type="text" name="username" placeholder="Nom d'utilisateur" required="required"/>
-                      <input type="password" name="password" placeholder="Mot de passe" required="required"/>
-                      <a href="" type="submit">Retour</a>
-                      <a href="#" type="submit">Connexion</a>
-      
-                  </form>
+                  <form [formGroup]="loginForm" (ngSubmit)="login()">  
+                      <input type="text" name="username" placeholder="Nom d'utilisateur" formControlName="username" required="required"/>
+                      <input type="password" name="password" placeholder="Mot de passe" formControlName="password" required="required"/>
+                      <a href="">Retour</a>
+                      <button type="submit">Connexion</button>
+                    </form>
               </div>
           </section>
       </div>

@@ -23,4 +23,8 @@ export class HomePageComponent {
       this.screenings = screenings;
     });
   }
+
+  getFilm(id: string): Film | undefined {
+    return this.films.find(film => film.id === id);
+  }
 }

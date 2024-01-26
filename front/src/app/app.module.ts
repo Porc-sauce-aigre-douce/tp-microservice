@@ -12,6 +12,7 @@ import { EditFilmPageComponent } from './edit-film-page/edit-film-page.component
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SignupPageComponent } from './signup-page/signup-page.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     AddScreeningPageComponent,
     EditScreeningPageComponent,
     EditFilmPageComponent,
-    AdminPageComponent
+    AdminPageComponent,
+    SignupPageComponent
   ],
   imports: [
     BrowserModule,

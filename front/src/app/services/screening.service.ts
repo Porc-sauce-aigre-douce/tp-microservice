@@ -20,8 +20,8 @@ export class ScreeningService {
     return this.http.get<Screening>(`${this.apiUrl}/${id}`);
   }
 
-  bookScreening(id: string, screening: Screening) {
-    this.http.put(`${this.apiUrl}/book/${id}`, screening).subscribe();
+  bookScreening(id: string) {
+    this.http.put(`${this.apiUrl}/book/${id}`, {userId: sessionStorage.getItem("id")}).subscribe();
   }
 
   createScreening(screening: Screening) {

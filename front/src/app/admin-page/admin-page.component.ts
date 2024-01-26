@@ -39,4 +39,13 @@ export class AdminPageComponent {
     this.screeningService.deleteScreening(id)
     this.router.navigate(['/admin/']);
   }
+
+  isLoggedIn(): boolean {
+    return sessionStorage.getItem('username') !== null;
+  }
+
+  logOut(): void {
+    sessionStorage.clear();
+    this.router.navigate(['/']);
+  }
 }

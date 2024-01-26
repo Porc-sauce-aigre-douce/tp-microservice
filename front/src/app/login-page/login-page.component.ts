@@ -22,6 +22,7 @@ export class LoginPageComponent {
       this.userService.getUserByUsername(this.loginForm.value['username']).subscribe(user => {
         if (user.password === this.loginForm.value['password'] && this.loginForm.value['username']) {
           sessionStorage.setItem('username', this.loginForm.value['username']);
+          sessionStorage.setItem('id', user._id);
           sessionStorage.setItem('role', user.role);
           this.router.navigate(['/']);
         }

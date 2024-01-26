@@ -3,6 +3,7 @@ import { Film } from '../interfaces/film';
 import { Screening } from '../interfaces/screening';
 import { FilmService } from '../services/film.service';
 import { ScreeningService } from '../services/screening.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
@@ -13,7 +14,7 @@ export class HomePageComponent {
   films: Film[] = [];
   screenings: Screening[] = [];
 
-  constructor(private filmService: FilmService, private screeningService: ScreeningService) { }
+  constructor(private filmService: FilmService, private screeningService: ScreeningService, private router: Router) { }
 
   ngOnInit(): void {
     this.filmService.getAllFilms().subscribe((films: Film[]) => {
@@ -26,5 +27,18 @@ export class HomePageComponent {
 
   getFilm(id: string): Film | undefined {
     return this.films.find(film => film.id === id);
+  }
+
+  isLoggedIn(): boolean {
+    return sessionStorage.getItem('username') !== null;
+  }
+
+  book(id: string): void {
+    this.screeningService.bookScreening(id);
+  }
+
+  logOut(): void {
+    sessionStorage.clear();
+    this.router.navigate(['/']);
   }
 }

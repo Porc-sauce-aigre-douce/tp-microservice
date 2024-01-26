@@ -4,13 +4,13 @@
           <section class="login-container">
               <div>
                   <header>
-                      <h2>Identification</h2>
+                      <h2>Inscription</h2>
                   </header>
-                  <form [formGroup]="loginForm" (ngSubmit)="login()">  
+                  <form [formGroup]="signupForm" (ngSubmit)="signup()">  
                       <input type="text" name="username" placeholder="Nom d'utilisateur" formControlName="username" required="required"/>
                       <input type="password" name="password" placeholder="Mot de passe" formControlName="password" required="required"/>
                       <button [routerLink]="'/'">Retour</button>
-                      <button type="submit">Connexion</button>
+                      <button type="submit">Inscription</button>
                     </form>
               </div>
           </section>

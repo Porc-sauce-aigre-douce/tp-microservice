@@ -7,6 +7,7 @@ import { EditScreeningPageComponent } from './edit-screening-page/edit-screening
 import { EditFilmPageComponent } from './edit-film-page/edit-film-page.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { SignupPageComponent } from './signup-page/signup-page.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -16,6 +17,8 @@ const routes: Routes = [
   { path: 'editFilm/:id', component: EditFilmPageComponent },
   { path: 'admin', component: AdminPageComponent },
   { path: 'login', component: LoginPageComponent },
+  { path: 'signup', component: SignupPageComponent },
+  { path: '**', redirectTo:'' }
 ];
 
 @NgModule({

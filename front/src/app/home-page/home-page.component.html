@@ -12,10 +12,22 @@
         <a href="#wrap-article4">A l'affiche</a>
         <div class="square"></div>
       </li>
-      <li>
-        <a href="login">Connexion</a>
-        <div class="square"></div>
-      </li>
+      <ng-container *ngIf="!isLoggedIn(); else elseBlock">
+        <li>
+          <a href="login">Connexion</a>
+          <div class="square"></div>
+        </li>
+        <li>
+          <a href="signup">Inscription</a>
+          <div class="square"></div>
+        </li>
+      </ng-container>
+      <ng-template #elseBlock>
+        <li>
+          <button (click)="logOut()">Déconnexion</button>
+          <div class="square"></div>
+        </li>
+      </ng-template>
     </ul>
   </nav>
 </header>
@@ -62,6 +74,7 @@
             <!-- <th><span>Place</span></th> -->
             <th><span>Film</span></th>
             <th><span>Séance</span></th>
+            <th *ngIf="isLoggedIn()"><span>Réserver</span></th>
           </tr>
         </thead>
 
@@ -73,6 +86,7 @@
               <!-- <td>224pl</td> -->
               <td>{{getFilm(screening.filmId)?.title}}</td>
               <td>{{screening.date}}</td>
+              <td *ngIf="isLoggedIn()"><button (click)="book(screening._id)">Reserver</button></td>
             </tr>
           </ng-container>
         </tbody>

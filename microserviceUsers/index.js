@@ -1,7 +1,7 @@
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const express = require('express');
-const router = express()
-router.use(express.json());
+const app = express()
+app.use(express.json());
 const port = 3001;
 let conn;
 let db;
@@ -35,9 +35,15 @@ async function run() {
 }
 run().catch(console.dir);
 
+app.all("*", function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "http://localhost:4200");
+  res.header("Access-Control-Allow-Methods", "*");
+  res.header("Access-Control-Allow-Headers", "*");
+  next();
+});
 
 // Get a single post
-router.get("/user/:username", async (req, res) => {
+app.get("/user/:username", async (req, res) => {
   res.header("Access-Control-Allow-Origin", "http://localhost:4200");
   let collection = await db.collection("users");
   let query = { username: req.params.username };
@@ -46,13 +52,12 @@ router.get("/user/:username", async (req, res) => {
     res.send("Not found").status(404);
   }
   else {
-    console.log(res.header);
     res.send(result).status(200);
   }
 });
 
 // Add a new document to the collection
-router.post("/user/", async (req, res) => {
+app.post("/user/", async (req, res) => {
   res.header("Access-Control-Allow-Origin", "http://localhost:4200");
   let collection = await db.collection("users");
   let newDocument = {
@@ -64,6 +69,6 @@ router.post("/user/", async (req, res) => {
   res.send(result).status(204);
 });
 
-router.listen(port, () => {
+app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })

@@ -4,6 +4,7 @@ import { Screening } from '../interfaces/screening';
 import { FilmService } from '../services/film.service';
 import { ScreeningService } from '../services/screening.service';
 import { Router } from '@angular/router';
+import { role } from '../interfaces/user';
 
 @Component({
   selector: 'app-admin-page',
@@ -23,6 +24,9 @@ export class AdminPageComponent {
     this.screeningService.getAllScreenings().subscribe((screenings: Screening[]) => {
       this.screenings = screenings;
     });
+    if(sessionStorage.getItem('role') !== role.Admin) {
+      this.router.navigate(['/']);
+    }
   }
 
   getFilm(id: string): Film | undefined {

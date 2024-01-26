@@ -4,6 +4,7 @@ import { Screening } from '../interfaces/screening';
 import { FilmService } from '../services/film.service';
 import { ScreeningService } from '../services/screening.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { role } from '../interfaces/user';
 
 @Component({
   selector: 'app-home-page',
@@ -28,6 +29,9 @@ export class HomePageComponent {
       this.activatedRoute.params.subscribe(params => {
         this.isBookSuccess = params['isBookSuccess'];
       });
+      if(sessionStorage.getItem('role') === role.Admin) {
+        this.router.navigate(['/admin']);
+      }
   }
 
   getFilm(id: string): Film | undefined {

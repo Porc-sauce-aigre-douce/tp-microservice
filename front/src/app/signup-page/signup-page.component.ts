@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { User } from '../interfaces/user';
+import { User, role } from '../interfaces/user';
 
 @Component({
   selector: 'app-signup-page',
@@ -19,8 +19,10 @@ export class SignupPageComponent {
 
   signup(): void {
     if (this.signupForm.valid && this.signupForm.value['username'] && this.signupForm.value['password']) {
-      this.userService.createUser(<User>this.signupForm.value).subscribe(user => {
-        if (user.password === this.signupForm.value['password'] && this.signupForm.value['username']) {
+      let userData: User = <User>this.signupForm.value;
+      userData.role = role.Chomeur;
+      this.userService.createUser(userData).subscribe(user => {
+        if (this.signupForm.value['password'] && this.signupForm.value['username']) {
           sessionStorage.setItem('username', this.signupForm.value['username']);
           sessionStorage.setItem('id', user._id);
           sessionStorage.setItem('role', user.role);

@@ -1,4 +1,4 @@
-enum role {
+export enum role {
   Chomeur = "Chomeur",
   Etudiant = "Etudiant",
   Mineur = "Mineur",

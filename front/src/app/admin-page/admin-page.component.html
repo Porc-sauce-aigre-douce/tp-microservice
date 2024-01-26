@@ -41,6 +41,7 @@
             <!-- <th><span>Place</span></th> -->
             <th><span>Film</span></th>
             <th><span>Séance</span></th>
+            <th><span>Prix</span></th>
             <th><span>Modifier</span></th>
             <th><span>Supprimer</span></th>
           </tr>
@@ -55,6 +56,7 @@
               <!-- <td>224pl</td> -->
               <td>{{getFilm(screening.filmId)?.title}}</td>
               <td>{{screening.date}}</td>
+              <td>10€</td>
               <td><a [routerLink]="['/editScreening', screening._id]">Modifier</a></td>
               <td><button (click)="deleteScreening(screening._id)">Supprimer</button></td>
             </tr>

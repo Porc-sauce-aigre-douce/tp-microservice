@@ -56,6 +56,10 @@
       </div>
   </div> -->
 
+  <div *ngIf="isBookSuccess">
+    <h1>Vous avez réservé avec succès !</h1>
+  </div>
+
   <div id="top">
     <a href="#"><img src="https://s31.postimg.cc/yoz44t0ff/top.png" alt=""></a>
   </div>
@@ -74,6 +78,7 @@
             <!-- <th><span>Place</span></th> -->
             <th><span>Film</span></th>
             <th><span>Séance</span></th>
+            <th><span>Prix</span></th>
             <th *ngIf="isLoggedIn()"><span>Réserver</span></th>
           </tr>
         </thead>
@@ -86,6 +91,7 @@
               <!-- <td>224pl</td> -->
               <td>{{getFilm(screening.filmId)?.title}}</td>
               <td>{{screening.date}}</td>
+              <td>10€</td>
               <td *ngIf="isLoggedIn()"><button (click)="book(screening._id)">Reserver</button></td>
             </tr>
           </ng-container>

@@ -3,7 +3,7 @@ import { Film } from '../interfaces/film';
 import { Screening } from '../interfaces/screening';
 import { FilmService } from '../services/film.service';
 import { ScreeningService } from '../services/screening.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
@@ -13,16 +13,21 @@ import { Router } from '@angular/router';
 export class HomePageComponent {
   films: Film[] = [];
   screenings: Screening[] = [];
+  isBookSuccess: boolean = false;
 
-  constructor(private filmService: FilmService, private screeningService: ScreeningService, private router: Router) { }
-
-  ngOnInit(): void {
-    this.filmService.getAllFilms().subscribe((films: Film[]) => {
-      this.films = films;
-    });
-    this.screeningService.getAllScreenings().subscribe((screenings: Screening[]) => {
-      this.screenings = screenings;
-    });
+  constructor(private filmService: FilmService, private screeningService: ScreeningService, private router: Router,
+    private activatedRoute: ActivatedRoute) { }
+    
+    ngOnInit(): void {
+      this.filmService.getAllFilms().subscribe((films: Film[]) => {
+        this.films = films;
+      });
+      this.screeningService.getAllScreenings().subscribe((screenings: Screening[]) => {
+        this.screenings = screenings;
+      });
+      this.activatedRoute.params.subscribe(params => {
+        this.isBookSuccess = params['isBookSuccess'];
+      });
   }
 
   getFilm(id: string): Film | undefined {
@@ -35,6 +40,7 @@ export class HomePageComponent {
 
   book(id: string): void {
     this.screeningService.bookScreening(id);
+    this.isBookSuccess = true;
   }
 
   logOut(): void {

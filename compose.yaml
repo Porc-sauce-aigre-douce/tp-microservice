@@ -1,0 +1,25 @@
+services:
+  front:
+    image: tp-microservice-front
+    build: ./front
+    ports:
+      - "4200:4200"
+    depends_on:
+      - user
+      - screening
+      - film
+  user:
+    image: tp-microservice-user
+    build: ./microserviceUsers
+    ports:
+      - "3001:3001"
+  screening:
+    image: tp-microservice-screening
+    build: ./microserviceScreening
+    ports:
+      - "3000:3000"
+  film:
+    image: tp-microservice-film
+    build: ./microserviceFilm
+    ports:
+      - "8080:8080"

@@ -28,7 +28,7 @@ jobs:
         #             ${{ runner.os }}-maven-
 
         -   name: Go to file
-            run: cd /microserviceFilm
+            run: cd /home/runner/work/tp-microservice/tp-microservice/microserviceFilm
 
         -   name: Build and test with Maven
             run: mvn clean test

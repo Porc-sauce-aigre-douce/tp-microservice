@@ -16,10 +16,8 @@ jobs:
                 distribution: 'adopt'
                 # cache: 'gradle'
 
-        -   run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub"
-
-        -   name: Grant execute permission for gradlew
-            run: chmod +x gradlew
+        # -   name: Grant execute permission for gradlew
+        #     run: chmod +x gradlew
 
         # -   name: Cache Maven packages
         #     uses: actions/cache@v3

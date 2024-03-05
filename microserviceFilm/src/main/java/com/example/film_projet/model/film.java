@@ -21,6 +21,13 @@ public class film {
         // Aucun argument n'est nécessaire pour le constructeur par défaut
     }
 
+    public void verifyNotNull() {
+        if(this.getId() == "") {
+            System.out.println("empty to null");
+            this.setID(null);
+        }
+    } 
+
     public void setID(String id) {
         this.id = id;
     }

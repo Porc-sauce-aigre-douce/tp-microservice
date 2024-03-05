@@ -24,9 +24,8 @@ public class filmService {
     }
 
     public film createFilm(film film) {
-        if(film.getId() == "") {
-            film.setID(null);
-        }
+        film film_raiponce = new film();
+        film_raiponce.verifyNotNull();
         return filmRepository.save(film);
     }
 

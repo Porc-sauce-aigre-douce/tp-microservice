@@ -1,6 +1,9 @@
 name: Java CI
 run-name: ${{ github.actor }} is running a verification test 🚀
 on: [push]
+defaults:
+    run:
+        working-directory: ./microserviceFilm
 jobs:
   build:
     runs-on: ubuntu-latest

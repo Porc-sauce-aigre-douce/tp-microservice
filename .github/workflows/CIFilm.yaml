@@ -34,8 +34,11 @@ jobs:
                 restore-keys: |
                     ${{ runner.os }}-maven-
 
+        -   name: Install depedencies
+            run: mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+        
         -   name: Build and test with Maven
-            run: mvn clean test
+            run: mvn -B test
 
         -   name: Upload coverage reports to Codecov
             uses: codecov/codecov-action@v4.0.1

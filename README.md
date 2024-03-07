@@ -1,5 +1,7 @@
 # TP-MICROSERVICES
 
+[![codecov](https://codecov.io/gh/Porc-sauce-aigre-douce/tp-microservice/graph/badge.svg?token=h1n6KStt8U)](https://codecov.io/gh/Porc-sauce-aigre-douce/tp-microservice)
+
 ## Front
 1. Angular
 This documentation provides an overview of the frontend part of our Angular project. Here you'll find information about the project structure, how to run the application, and other relevant details.

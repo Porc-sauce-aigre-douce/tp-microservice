@@ -4,6 +4,7 @@ ENV HOME=/usr/app
 WORKDIR $HOME
 COPY . .
 RUN ls
+RUN chmod +x mvnw
 RUN dos2unix mvnw
 RUN --mount=type=cache,target=/root/.m2 ./mvnw -f $HOME/pom.xml clean package
 

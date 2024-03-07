@@ -20,7 +20,8 @@ services:
       - "3000:3000"
   film:
     image: tp-microservice-film
-    build: ./microserviceFilm
+    build:
+      context: ./microserviceFilm
     ports:
       - "8080:8080"
     # depends_on:
